@@ -10,7 +10,7 @@
 		"svelte": "~1.17.2",
 		"eslint": "~3.19.0",
 		"neutrino": "~5.6.0",
-		"neutrino-preset-svelte": "~2.0.1",
+		"neutrino-preset-svelte": "~2.1.0",
 		"neutrino-preset-jest": "~5.6.0",
 		"neutrino-preset-airbnb-base": "~5.6.0"
 	},
