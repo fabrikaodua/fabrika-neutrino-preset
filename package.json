@@ -1,18 +1,18 @@
 {
-	"name": "fabrika-neutrino-preset",
+	"name": "neutrino-preset-fabrika",
 	"private": true,
 	"version": "1.0.0",
-	"description": "A Neutrino preset for Fabrika projects",
+	"description": "Neutrino preset for building projects in http://fabrika.od.ua",
 	"main": "index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",
 	"license": "GPL-3.0",
 	"dependencies": {
 		"svelte": "~1.17.2",
 		"eslint": "~3.19.0",
-		"neutrino": "~5.6.0",
+		"neutrino": "~5.8.0",
 		"neutrino-preset-svelte": "~2.1.0",
-		"neutrino-preset-jest": "~5.6.0",
-		"neutrino-preset-airbnb-base": "~5.6.0"
+		"neutrino-preset-jest": "~5.8.0",
+		"neutrino-preset-airbnb-base": "~5.8.0"
 	},
 	"engines": {
 		"node": ">=6.9.0",

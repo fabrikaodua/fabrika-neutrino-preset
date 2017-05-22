@@ -1,6 +1,6 @@
 # Fabrika Neutrino preset
 
-`fabrika-neutrino-preset` is a [Neutrino](https://neutrino.js.org) preset for creation of web applications for web platforms.
+`neutrino-preset-fabrika` is a [Neutrino](https://neutrino.js.org) preset for creation of web applications for web platforms.
 
 ## Features
 
@@ -15,7 +15,7 @@
 - Testing with Jest
 - Source watching for re-running of tests on change
 - Collecting test coverage information and generating report
-- ESLint code analize
+- ESLint code analyze
 
 ## Requirements
 
@@ -24,18 +24,18 @@
 
 ## Installation
 
-`fabrika-neutrino-preset` can be installed from GitHub. Make sure  `fabrika-neutrino-preset` is a development dependency in your project.
+`neutrino-preset-fabrika` can be installed from GitHub. Make sure  `neutrino-preset-fabrika` is a development dependency in your project.
 
 **package.json**
 ```json
 "devDependencies": {
-  "fabrika-neutrino-preset": "git://github.com/fabrikaodua/fabrika-neutrino-preset"
+  "neutrino-preset-fabrika": "git://github.com/fabrikaodua/neutrino-preset-fabrika"
 },
 ```
 
 ## Project Layout
 
-`fabrika-neutrino-preset` follows the standard [project layout](https://neutrino.js.org/project-layout) specified by Neutrino. This means that by default all project source code should live in a directory named `src` in the root of the project. This includes JavaScript files, CSS stylesheets, images, and any other assets that would be available to your compiled project. Only files explicitly imported or lazy loaded to your project will be bundled.
+`neutrino-preset-fabrika` follows the standard [project layout](https://neutrino.js.org/project-layout) specified by Neutrino. This means that by default all project source code should live in a directory named `src` in the root of the project. This includes JavaScript files, CSS stylesheets, images, and any other assets that would be available to your compiled project. Only files explicitly imported or lazy loaded to your project will be bundled.
 
 Project test code should live in a directory named `test` in the root of the project. Test files end in either `_test.js` or `.test.js`.
 
@@ -47,7 +47,7 @@ After installing Neutrino and the Fabrika preset, add a new directory named `src
 import Body from './body.html'
 import './main.css'
 
-new Body({
+new Body({ // eslint-disable-line no-new
   target: document.body
 })
 ```
@@ -79,7 +79,7 @@ Now edit your project's `package.json` to add commands for starting and building
   },
   "neutrino": {
     "use": [
-      "fabrika-neutrino-preset"
+      "neutrino-preset-fabrika"
     ]
   }
 }
@@ -95,7 +95,7 @@ Start the app.
 
 ## Building
 
-`fabrika-neutrino-preset` builds static assets to the `build` directory by default when build command is run.
+`neutrino-preset-fabrika` builds static assets to the `build` directory by default when build command is run.
 
 ```bash
 ❯ npm run build
@@ -143,7 +143,7 @@ generate a report:
 
 ## Hot Reloading
 
-`fabrika-neutrino-preset` supports Hot Reloading of files that was changed. Hot Module Replacement is supported only in CSS files. This means that changing of CSS will rerender only a part of styles, and changing of the rest of modules will reload the page.
+`neutrino-preset-fabrika` supports Hot Reloading of files that was changed. Hot Module Replacement is supported only in CSS files. This means that changing of CSS will rerender only a part of styles, and changing of the rest of modules will reload the page.
 
 Using dynamic imports with `import()` will automatically create split points and hot replace those modules upon modification during development.
 
@@ -151,9 +151,9 @@ Using dynamic imports with `import()` will automatically create split points and
 
 ### HTML files
 
-Under the hood `fabrika-neutrino-preset` uses [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) with custom template for generating HTML files. If you wish to override how these files are created, define an object in your package.json at `neutrino.options.html` with options matching the format expected by `html-webpack-plugin` and also with `"mobile"` option.
+Under the hood `neutrino-preset-fabrika` uses [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) with custom template for generating HTML files. If you wish to override how these files are created, define an object in your package.json at `neutrino.options.html` with options matching the format expected by `html-webpack-plugin` and also with `"mobile"` option.
 
-*Simple Example: Change the application title and othe options:*
+*Simple Example: Change the application title and other options:*
 
 **package.json**
 ```json
