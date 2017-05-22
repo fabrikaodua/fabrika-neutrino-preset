@@ -1,10 +1,14 @@
 {
 	"name": "neutrino-preset-fabrika",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Neutrino preset for building projects in http://fabrika.od.ua",
 	"main": "index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",
 	"license": "GPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fabrikaodua/neutrino-preset-fabrika.git"
+	},
 	"dependencies": {
 		"svelte": "~1.17.2",
 		"eslint": "~3.19.0",
