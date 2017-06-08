@@ -2,6 +2,7 @@
 
 let path = require('path')
 let sveltePreset = require('neutrino-preset-svelte')
+let vuePreset = require('neutrino-preset-vue')
 let jestPreset = require('neutrino-preset-jest')
 let airbnbPreset = require('neutrino-preset-airbnb-base')
 
@@ -13,7 +14,7 @@ module.exports = function (neutrino) {
 		host: 'localhost',
 		port: 4000,
 		https: false,
-		open: false
+		open: true
 	}
 
 	neutrino.options.compile = {
@@ -32,5 +33,16 @@ module.exports = function (neutrino) {
 	
 	neutrino.use(airbnbPreset)
 	neutrino.use(sveltePreset)
+	neutrino.use(vuePreset)
 	neutrino.use(jestPreset)
+
+	// config.module
+   //    .rule('lint')
+   //    .use('eslint')
+   //    .tap(options => {
+	// 		options.parser = 'vue-eslint-parser'
+	// 		options.parserOptions.parser = 'babel-eslint'
+	// 		options.parserOptions.sourceType = 'module'
+	// 		return options
+   //    });
 }

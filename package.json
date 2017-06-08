@@ -1,6 +1,6 @@
 {
 	"name": "neutrino-preset-fabrika",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Neutrino preset for building projects in http://fabrika.od.ua",
 	"main": "index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",
@@ -12,10 +12,12 @@
 	"dependencies": {
 		"svelte": "~1.17.2",
 		"eslint": "~3.19.0",
-		"neutrino": "~5.8.0",
+		"vue": "^2.0.0",
+		"neutrino": "~5.9.0",
 		"neutrino-preset-svelte": "~2.1.0",
-		"neutrino-preset-jest": "~5.8.0",
-		"neutrino-preset-airbnb-base": "~5.8.0"
+		"neutrino-preset-jest": "~5.9.0",
+		"neutrino-preset-airbnb-base": "~5.9.0",
+		"neutrino-preset-vue": "^2.1.0"
 	},
 	"engines": {
 		"node": ">=6.9.0",
