@@ -5,6 +5,7 @@ let sveltePreset = require('neutrino-preset-svelte')
 let vuePreset = require('neutrino-preset-vue')
 let jestPreset = require('neutrino-preset-jest')
 let airbnbPreset = require('neutrino-preset-airbnb-base')
+let eslintConfig = require('./eslint.config.js')
 
 module.exports = function (neutrino) {
 	const NODE_MODULES = path.resolve(__dirname, 'node_modules')
@@ -31,7 +32,9 @@ module.exports = function (neutrino) {
 			.add(NODE_MODULES)
 			.end().end()
 	
-	neutrino.use(airbnbPreset)
+	neutrino.use(airbnbPreset, {
+   	eslint: eslintConfig
+  	})
 	neutrino.use(sveltePreset)
 	neutrino.use(vuePreset)
 	neutrino.use(jestPreset)
