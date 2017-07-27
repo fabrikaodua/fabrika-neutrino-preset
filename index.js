@@ -22,7 +22,7 @@ module.exports = function (neutrino) {
 	neutrino.use(eslintPreset)
 	neutrino.use(sveltePreset, {
 		server: {
-			host: 'localhost',
+			public: true,
 			port: 4000,
 			https: false,
 			open: true
@@ -33,6 +33,6 @@ module.exports = function (neutrino) {
 	neutrino.use(vuePreset)
 	neutrino.use(jestPreset)
 	
-	var len = config.toConfig().module.rules.length
+	// var len = config.toConfig().module.rules.length
 	// console.log(config.toConfig().module.rules[len-2].use[0])
 }

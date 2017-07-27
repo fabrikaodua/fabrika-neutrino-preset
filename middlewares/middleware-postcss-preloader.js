@@ -12,13 +12,10 @@ module.exports = (neutrino, options = {}) => {
 	let loaderExtensions = options.test || /\.css$/
 	let postcssOptions = merge({ 
 		sourceMap:  false,
-		plugins: [postcssImport({ addDependency: webpack })],
-		exec: undefined,
-		parser: undefined,
-		syntax: undefined,
-		stringifier: undefined,	 
-		config: undefined
+		plugins: [postcssImport({ addDependency: webpack })]
 	}, options)
+	let postcssLoader = require.resolve('postcss-loader')
+	let syntaxHtml =  require.resolve('postcss-html')
 
 	// default values
 	if (!options.include && !options.exclude) {
@@ -43,15 +40,37 @@ module.exports = (neutrino, options = {}) => {
 				.merge(options.exclude || [])
 				.end()
 			.use('postcss')
-				.loader(require.resolve('postcss-loader'))
+				.loader(postcssLoader)
 				.tap((opts = {}) => merge(opts, postcssOptions))
+				.end()
+			.end().end()
+		.module.rule('posthtml')
+			.pre()
+			.test( /\.html?$/)
+			.include
+				.merge(options.include || [])
+				.end()
+			.exclude
+				.add(NODE_MODULES)
+				.merge(options.exclude || [])
+				.end()
+			.use('postcss')
+				.loader(postcssLoader)
+				.tap((opts = {}) => merge(opts, postcssOptions))
+				.tap((opts = {}) => merge(opts, { 
+					// exec: undefined,
+					// parser: syntaxHtml
+					syntax: syntaxHtml
+					// stringifier: undefined,	 
+					// config: undefined
+				}))
 				.end()
 			.end().end()
 		.module.rule('vue')
 			.use('vue')
-				.tap((opts = {}) => merge({
+				.tap((opts = {}) => merge(opts, {
 					postcss: postcssOptions
-				}, opts))
+				}))
 				.end()
 			.end().end()
 		.resolveLoader.modules
