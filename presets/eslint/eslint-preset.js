@@ -21,7 +21,7 @@ module.exports = function (neutrino) {
 		.use('eslint')
 			.tap(options => merge(options, {
 				plugins: ['vue'],
-				env: { node: true },
+				envs: { node: true },
 				rules: {
 					'vue/jsx-uses-vars': 2
 				}
