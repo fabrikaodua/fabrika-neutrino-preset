@@ -2,7 +2,7 @@
 
 let airbnbPreset = require('neutrino-preset-airbnb-base')
 let arrify = require('arrify')
-const merge = require('deepmerge');
+let merge = require('deepmerge')
 
 let eslintConfig = require('./eslint.config.js')
 
@@ -25,13 +25,13 @@ module.exports = function (neutrino) {
 				rules: {
 					'vue/jsx-uses-vars': 2
 				}
-			}));
+			}))
 
-	
+
 	// config.module
-   //    .rule('lint')
-   //    .use('eslint')
-   //    .tap(options => {
+	//    .rule('lint')
+	//    .use('eslint')
+	//    .tap(options => {
 	// 		options.parser = 'vue-eslint-parser'
 	// 		options.parserOptions.parser = 'babel-eslint'
 	// 		options.parserOptions.sourceType = 'module'

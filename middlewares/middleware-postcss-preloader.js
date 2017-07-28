@@ -1,7 +1,7 @@
 'use strict'
 
-let merge = require('deepmerge');
-let path = require('path');
+let merge = require('deepmerge')
+let path = require('path')
 let postcssImport = require('postcss-import')
 let webpack = require('webpack')
 
@@ -10,7 +10,7 @@ module.exports = (neutrino, options = {}) => {
 	let config = neutrino.config
 	// let loaderExtensions = options.test || /\.(s(a|c)ss|less)$/
 	let loaderExtensions = options.test || /\.css$/
-	let postcssOptions = merge({ 
+	let postcssOptions = merge({
 		sourceMap:  false,
 		plugins: [postcssImport({ addDependency: webpack })]
 	}, options)
@@ -44,7 +44,7 @@ module.exports = (neutrino, options = {}) => {
 				.tap((opts = {}) => merge(opts, postcssOptions))
 				.end()
 			.end().end()
-		.module.rule('posthtml')
+		.module.rule('postcss-html')
 			.pre()
 			.test( /\.html?$/)
 			.include
@@ -57,7 +57,7 @@ module.exports = (neutrino, options = {}) => {
 			.use('postcss')
 				.loader(postcssLoader)
 				.tap((opts = {}) => merge(opts, postcssOptions))
-				.tap((opts = {}) => merge(opts, { 
+				.tap((opts = {}) => merge(opts, {
 					// exec: undefined,
 					// parser: syntaxHtml
 					syntax: syntaxHtml
