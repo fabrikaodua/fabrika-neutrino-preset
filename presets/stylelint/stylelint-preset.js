@@ -8,9 +8,9 @@ let stylelintConfig = require('./stylelint.config.js')
 module.exports = function (neutrino, options = {}) {
 	neutrino.use(stylelintMiddleware, {
 		// configFile: options.configFile,
-		// configBasedir
 		// configOverrides
 		// formatter - Options: "json"|"string"|"verbose", or a function. Default is "json".
+		// configBasedir
 		ignoreDisables: false,
 		reportNeedlessDisables: false,
 		cache: false,

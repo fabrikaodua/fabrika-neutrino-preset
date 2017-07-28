@@ -1,10 +1,12 @@
 'use strict'
 
-let postCssPreloaderMiddleware = require('./middleware-postcss-preloader.js')
+let path = require('path')
+let merge = require('deepmerge')
 let stylelint = require('stylelint')
 let postcssReporter = require('postcss-reporter')
+let postCssPreloaderMiddleware = require('./middleware-postcss-preloader.js')
 
-module.exports = function (neutrino, options = {}) { 
+module.exports = function (neutrino, options = {}) {
 	let prodRun = (process.env.NODE_ENV === 'production')
 
 	neutrino.use(postCssPreloaderMiddleware, {
@@ -18,7 +20,7 @@ module.exports = function (neutrino, options = {}) {
 			// 	]
 			// }),
 			stylelint(options),
-			postcssReporter({ 
+			postcssReporter({
 				plugins: ['stylelint'],
 				noPlugin: false,
 				// throwError : Boolean(prodRun),
@@ -30,5 +32,43 @@ module.exports = function (neutrino, options = {}) {
 
 	neutrino.register('stylelintrc', function(){
 		return options.config
+	})
+	neutrino.register('stylelint', function() {
+		let defaultPattern = path.join(
+			path.basename(neutrino.options.source),
+			'**/*.css'
+		)
+		let includePattern = (options.include || [])
+			.map(function (include) {
+				return path.join(
+					path.basename(neutrino.options.source),
+					path.basename(include),
+					'**/*'
+				)
+			})
+		let excludePattern = (options.exclude || [])
+			.map(function (exclude) {
+				return path.join(
+					path.basename(neutrino.options.source),
+					path.basename(exclude),
+					'**/*'
+				)
+			})
+		let stylelintOptions = merge(options, {
+			files: includePattern.length ? includePattern : defaultPattern,
+			ignoreFiles: excludePattern,
+			disableDefaultIgnores: true,
+			formatter: 'verbose'
+		})
+
+		return stylelint.lint(stylelintOptions)
+			.then(function({errored, output}) {
+				if (errored) {
+					throw output
+				}
+				else {
+					return output
+				}
+			})
 	})
 }
