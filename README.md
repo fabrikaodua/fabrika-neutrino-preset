@@ -44,12 +44,10 @@ Project test code should live in a directory named `test` in the root of the pro
 After installing Neutrino and the Fabrika preset, add a new directory named `src` in the root of the project, with a single JS file named `index.js` in it. You can mount you application to the document `<body>`. Edit your `src/index.js` file with the following:
 
 ```js
-import Body from './body.html'
+
 import './main.css'
 
-new Body({ // eslint-disable-line no-new
-  target: document.body
-})
+document.body.innerHTML = 'Application started'
 ```
 
 You can change this code base to better match your needs.
@@ -92,6 +90,43 @@ Start the app.
 ✔ Development server running on: http://localhost:4000
 ✔ Build completed
 ```
+
+This preset is compatible with different frameworks. It allows to flexibly setup entry point for different types of projects.
+
+### Start with VueJS application
+
+VueJS framework uses `.vue` files as components. For quick start you can use this sample. You can mount you application to the document `<body>`. Edit your `src/index.js` file with the following:
+
+```js
+import Vue from 'vue';
+import Body from './body.vue';
+
+new Vue({ // eslint-disable-line no-new
+	el: 'body',
+	render(callback) {
+		return callback(Body);
+	}
+});
+
+```
+
+You can change this code base to better match your needs.
+
+
+### Start with Svelte application
+
+Svelte framework uses `.html` files as components. For quick start you can use this sample. You can mount you application to the document `<body>`. Edit your `src/index.js` file with the following:
+
+```js
+import Body from './body.html'
+import './main.css'
+
+new Body({ // eslint-disable-line no-new
+  target: document.body
+})
+```
+
+You can change this code base to better match your needs.
 
 ## Building
 
