@@ -23,7 +23,7 @@ module.exports = function (neutrino) {
 	neutrino.use(sveltePreset, {
 		server: {
 			public: true,
-			port: 4000,
+			port: 3000,
 			https: false,
 			open: true
 		},
