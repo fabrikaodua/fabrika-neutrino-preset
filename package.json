@@ -33,7 +33,9 @@
 		"vue-template-compiler": "~2.4.2",
 		"css-loader": "*",
 		"vue-template-es2015-compiler": "*",
-		"babel-core": "*"
+		"babel-core": "*",
+		"extract-loader": "1.0.0",
+		"html-loader": "0.5.0"
 	},
 	"devDependencies": {
 		"neutrino": "~6.1.4",
