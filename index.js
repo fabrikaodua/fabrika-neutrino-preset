@@ -18,7 +18,7 @@ module.exports = function (neutrino) {
 		.resolveLoader.modules
 			.add(NODE_MODULES)
 			.end().end()
-	
+
 	neutrino.use(eslintPreset)
 	neutrino.use(sveltePreset, {
 		server: {
@@ -31,8 +31,13 @@ module.exports = function (neutrino) {
 	})
 	neutrino.use(stylelintPreset)
 	neutrino.use(vuePreset)
-	neutrino.use(jestPreset)
-	
+	neutrino.use(jestPreset, {
+		coveragePathIgnorePatterns: [ '/.*\\.vue$'],
+		transform: {
+			'\\.vue$': require.resolve('./middlewares/jest-vue-processor.js')
+		}
+	})
+
 	// var len = config.toConfig().module.rules.length
 	// console.log(config.toConfig().module.rules[len-2].use[0])
 }
