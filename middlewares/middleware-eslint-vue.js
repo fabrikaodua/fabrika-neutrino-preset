@@ -24,7 +24,6 @@ module.exports = function (neutrino, options = {}) {
 						]
 					},
 					plugins: ['vue'],
-					// envs: { node: true },
 					rules: {
 						'vue/jsx-uses-vars': 'error'
 					}

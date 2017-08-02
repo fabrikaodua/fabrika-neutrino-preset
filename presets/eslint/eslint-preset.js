@@ -11,6 +11,7 @@ module.exports = function (neutrino) {
 	})
 	neutrino.use(eslintVueMiddleware, {
 		eslint: {
+			// envs: { node: true },
 			rules: {
 				'vue/html-no-self-closing': 'off',
 				'vue/no-invalid-template-root': 'off'

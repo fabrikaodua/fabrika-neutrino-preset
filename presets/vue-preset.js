@@ -24,6 +24,7 @@ module.exports = (neutrino, options = {}) => {
 		vueRule
 			.use('vue')
 				.tap((opts = {}) => merge({
+					// preserveWhitespace: false,
 					loaders: {
 						js: {
 							loader: 'babel-loader',
