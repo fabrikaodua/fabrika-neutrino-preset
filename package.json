@@ -1,6 +1,6 @@
 {
 	"name": "neutrino-preset-fabrika",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Neutrino preset for building projects in http://fabrika.od.ua",
 	"main": "index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",
@@ -10,22 +10,21 @@
 		"url": "https://github.com/fabrikaodua/neutrino-preset-fabrika.git"
 	},
 	"dependencies": {
+		"arrify": "~1.0.1",
 		"neutrino-preset-svelte": "~3.0.0",
-		"neutrino-preset-jest": "~6.1.4",
-		"neutrino-preset-airbnb-base": "~6.1.4",
+		"neutrino-preset-jest": "~6.1.5",
+		"neutrino-preset-airbnb-base": "~6.1.5",
 		"stylelint": "~8.0.0",
 		"stylelint-config-standard": "~17.0.0",
 		"deepmerge": "~1.5.0",
 		"postcss-loader": "~2.0.6",
 		"postcss-import": "~10.0.0",
-		"postcss-reporter": "~4.0.0",
-		"postcss-html": "~0.8.0",
+		"postcss-reporter": "~5.0.0",
+		"postcss-html": "~0.9.0",
 		"postcss": "~6.0.8",
 		"postcss-sass": "*",
 
-		"arrify": "~1.0.1",
-
-		"eslint-plugin-vue": "~2.1.0",
+		"eslint-plugin-vue": "beta",
 		"stylelint-processor-html": "~1.0.0",
 		
 		"vue-loader": "~13.0.2",
@@ -38,7 +37,7 @@
 		"html-loader": "0.5.0"
 	},
 	"devDependencies": {
-		"neutrino": "~6.1.4",
+		"neutrino": "~6.1.5",
 		"webpack": "~2.6.1",
 		"eslint": "~4.3.0"
 	},
