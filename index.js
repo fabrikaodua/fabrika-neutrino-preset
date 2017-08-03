@@ -3,11 +3,12 @@
 let path = require('path')
 let sveltePreset = require('neutrino-preset-svelte')
 let jestPreset = require('neutrino-preset-jest')
+let merge = require('deepmerge')
 let vuePreset = require('./presets/vue-preset.js')
 let stylelintPreset = require('./presets/stylelint/stylelint-preset.js')
 let eslintPreset = require('./presets/eslint/eslint-preset.js')
 
-module.exports = function (neutrino) {
+module.exports = function (neutrino, options = {}) {
 	const NODE_MODULES = path.resolve(__dirname, 'node_modules')
 	let config = neutrino.config
 
@@ -20,7 +21,7 @@ module.exports = function (neutrino) {
 			.end().end()
 
 	neutrino.use(eslintPreset)
-	neutrino.use(sveltePreset, {
+	neutrino.use(sveltePreset, merge({
 		server: {
 			public: true,
 			port: 3000,
@@ -28,7 +29,7 @@ module.exports = function (neutrino) {
 			open: true
 		},
 		browsers: ['last 3 versions']
-	})
+	}, options))
 	neutrino.use(stylelintPreset)
 	neutrino.use(vuePreset)
 	neutrino.use(jestPreset, {
