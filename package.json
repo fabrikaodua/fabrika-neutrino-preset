@@ -1,6 +1,6 @@
 {
 	"name": "neutrino-preset-fabrika",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "Neutrino preset for building projects in http://fabrika.od.ua",
 	"main": "index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",

@@ -15,22 +15,41 @@
 - Testing with Jest
 - Source watching for re-running of tests on change
 - Collecting test coverage information and generating report
-- ESLint code analyze
+- ESlint code analyze
+- Stylelint code analyze
 
 ## Requirements
 
 - Node.js v6.9+
-- Neutrino v5
+- Neutrino v6
 
 ## Installation
 
-`neutrino-preset-fabrika` can be installed from GitHub. Make sure  `neutrino-preset-fabrika` is a development dependency in your project.
+`neutrino-preset-fabrika` can be installed from NPM. Make sure `neutrino` and `neutrino-preset-fabrika` are development dependencies in your project.
 
 **package.json**
 ```json
 "devDependencies": {
-  "neutrino-preset-fabrika": "git://github.com/fabrikaodua/neutrino-preset-fabrika"
+  "neutrino": "latest",
+  "neutrino-preset-fabrika": "latest"
 },
+```
+
+And add the new file `.neutrinorc.js` in the root of the project:
+
+**.neutrinorc.js**
+```js
+module.exports = {
+  use: [
+    'neutrino-preset-fabrika'
+  ]
+}
+```
+
+Install all you project dependencies by calling
+
+```bash
+npm install
 ```
 
 ## Project Layout
@@ -39,7 +58,9 @@
 
 Project test code should live in a directory named `test` in the root of the project. Test files end in either `_test.js` or `.test.js`.
 
-## Quickstart
+## Quick start
+
+### Source code
 
 After installing Neutrino and the Fabrika preset, add a new directory named `src` in the root of the project, with a single JS file named `index.js` in it. You can mount you application to the document `<body>`. Edit your `src/index.js` file with the following:
 
@@ -52,7 +73,8 @@ document.body.innerHTML = 'Application started'
 
 You can change this code base to better match your needs.
 
-You can create also `test/index.test.js` as an entry point for your test. To run tests against files from your source code, simply import them. Jest framework is used in this preset so your tests will look like this:
+### Tests
+You can create also `test/index.test.js` as an entry point for your test. To run tests against files from your source code, simply import them. [Jest](https://facebook.github.io/jest/) framework is used in this preset so your tests will look like this:
 
  ```js
 import module from '../src/module.js'
@@ -64,6 +86,8 @@ describe('module', () => {
 });
 ```
 
+### Tasks
+
 Now edit your project's `package.json` to add commands for starting and building the application:
 
 ```json
@@ -74,11 +98,6 @@ Now edit your project's `package.json` to add commands for starting and building
     "test": "neutrino test",
     "test:watch": "neutrino test --watch",
     "coverage": "neutrino test --coverage"
-  },
-  "neutrino": {
-    "use": [
-      "neutrino-preset-fabrika"
-    ]
   }
 }
 ```
@@ -87,26 +106,44 @@ Start the app.
 
 ```bash
 ❯ npm start
-✔ Development server running on: http://localhost:4000
+✔ Development server running on: http://localhost:3000
 ✔ Build completed
 ```
+
+The application will automatically open in a default browser with a local network IP. The same address may be used on any device that is connected to the same local network. For example it may be useful for mobile versions development.
 
 This preset is compatible with different frameworks. It allows to flexibly setup entry point for different types of projects.
 
 ### Start with VueJS application
 
-VueJS framework uses `.vue` files as components. For quick start you can use this sample. You can mount you application to the document `<body>`. Edit your `src/index.js` file with the following:
+VueJS framework uses `.vue` files as components. For quick start you can use this sample. You can mount your application to the document `<body>`. Edit your `src/index.js` file with the following:
 
+**index.js**
 ```js
 import Vue from 'vue';
 import Body from './body.vue';
 
 new Vue({ // eslint-disable-line no-new
-	el: 'body',
-	render(callback) {
-		return callback(Body);
-	}
+  el: 'body',
+    render(callback) {
+    return callback(Body);
+  }
 });
+```
+
+**body.vue**
+```html
+<script>
+  export default {};
+</script>
+
+<style src="./common.css" />
+
+<template>
+  <body>
+    Application started
+  </body>
+</template>
 
 ```
 
@@ -117,6 +154,7 @@ You can change this code base to better match your needs.
 
 Svelte framework uses `.html` files as components. For quick start you can use this sample. You can mount you application to the document `<body>`. Edit your `src/index.js` file with the following:
 
+**index.js**
 ```js
 import Body from './body.html'
 import './main.css'
@@ -124,6 +162,17 @@ import './main.css'
 new Body({ // eslint-disable-line no-new
   target: document.body
 })
+```
+
+**body.html**
+```html
+<div>Application started</div>
+
+<style></style>
+
+<script>
+  export default {};
+</script>
 ```
 
 You can change this code base to better match your needs.
@@ -137,6 +186,10 @@ You can change this code base to better match your needs.
 ```
 
 You can either serve or deploy the contents of this build directory as a static site.
+
+### Static assets
+
+If you wish to copy files to the build directory that are not imported from application code, you can place them in a directory within `src` called `static`. All files in this directory will be copied from `src/static` to `build/static`.
 
 ## Testing
 
@@ -178,31 +231,71 @@ generate a report:
 
 ## Hot Reloading
 
-`neutrino-preset-fabrika` supports Hot Reloading of files that was changed. Hot Module Replacement is supported only in CSS files. This means that changing of CSS will rerender only a part of styles, and changing of the rest of modules will reload the page.
+`neutrino-preset-fabrika` supports Hot Reloading of files that was changed. Hot Module Replacement is supported only in CSS files and Vue components. Other types of modules will completely reload the page on change.
 
 Using dynamic imports with `import()` will automatically create split points and hot replace those modules upon modification during development.
 
-## Customizing
+## Preset options
 
-### HTML files
+You can provide custom options and have them merged with this preset's default options to easily affect how this preset builds. You can modify the preset settings from `.neutrinorc.js` by overriding with an options object. Use
+an array pair instead of a string to supply these options in `.neutrinorc.js`.
 
-Under the hood `neutrino-preset-fabrika` uses [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) with custom template for generating HTML files. If you wish to override how these files are created, define an object in your package.json at `neutrino.options.html` with options matching the format expected by `html-webpack-plugin` and also with `"mobile"` option.
+The following shows how you can pass an options object to the preset and override its options, showing the defaults:
 
-*Simple Example: Change the application title and other options:*
+**.neutrinorc.js**
+```js
+module.exports = {
+  use: [
+    ['neutrino-preset-fabrika', {
+      // options related to generating the HTML document
+      html: {
+        title: `${name} ${version}`,
+        mobile: true
+      },
 
-**package.json**
-```json
-{
-  "neutrino": {
-    "options": {
-      "html": {
-        "title": "Document title",
-        "mobile": true,
-        "filename": "index.html"
-      }
-    }
-  }
-}
+      // options related to a development server
+      server: {
+        https: false,
+        public: true,
+        port: 3000,
+        open: true
+      },
+
+      // supported browsers in a Browser List format
+      browsers: [
+        'last 3 versions'
+      ]
+    }]
+  ]
+};
+```
+
+*Example: Enable HTTPS, disable auto-opening of a browser, change the page title, define supported browsers:*
+
+**.neutrinorc.js**
+```js
+module.exports = {
+  use: [
+    ['neutrino-preset-svelte', {
+      // Example: disable auto open in browser and enable SSL
+      server: {
+        https: true,
+        open: false
+      },
+
+      // Example: change the page title
+      html: {
+        title: 'Web App'
+      },
+
+      // Example: change supported browsers
+      browsers: [
+        'last 1 version',
+        'ie >= 10'
+      ]
+    }]
+  ]
+};
 ```
 
 
