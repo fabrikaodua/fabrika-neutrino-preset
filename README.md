@@ -235,6 +235,32 @@ generate a report:
 
 Using dynamic imports with `import()` will automatically create split points and hot replace those modules upon modification during development.
 
+## Linting
+
+`neutrino-preset-fabrika` has a built-in support of ESlint and Stylelint. But for highlighting of errors in code editors config files should be created in the project root. The static analyzes will be performed automatically on build and start.
+
+### ESLint
+
+To enable ESlint in the code editor install a corresponding editor extension and create `.eslintrc.js` file in the project root
+
+**.eslintrc.js**
+```js
+const { Neutrino } = require('neutrino')
+const api = Neutrino()
+module.exports = api.call('eslintrc')
+```
+
+### Stylelint
+
+To enable Stylelint in the code editor install a corresponding editor extension and create `.stylelintrc.js` file in the project root
+
+**.stylelintrc.js**
+```js
+const { Neutrino } = require('neutrino')
+const api = Neutrino()
+module.exports = api.call('stylelintrc')
+```
+
 ## Preset options
 
 You can provide custom options and have them merged with this preset's default options to easily affect how this preset builds. You can modify the preset settings from `.neutrinorc.js` by overriding with an options object. Use
