@@ -65,7 +65,7 @@ function vue(src, filePath, config) {
 }
 
 module.exports = {
-	process(src, filePath, config) {
+	process: function(src, filePath, config) {
 		let output = src
 		if (filePath.endsWith('.vue')) {
 			output = vue(src, filePath, config)

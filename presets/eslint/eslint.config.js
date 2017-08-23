@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = {
 	rules: {
 		'id-length': ['error', { min: 2, properties: 'never', exceptions: ['i'] }],

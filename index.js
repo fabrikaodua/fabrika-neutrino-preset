@@ -2,8 +2,8 @@
 
 let path = require('path')
 let sveltePreset = require('neutrino-preset-svelte')
-let jestPreset = require('neutrino-preset-jest')
 let merge = require('deepmerge')
+let jestVuePreset = require('./presets/jest/jest-vue-preset.js')
 let vuePreset = require('./presets/vue-preset.js')
 let stylelintPreset = require('./presets/stylelint/stylelint-preset.js')
 let eslintPreset = require('./presets/eslint/eslint-preset.js')
@@ -32,12 +32,7 @@ module.exports = function (neutrino, options = {}) {
 	}, options))
 	neutrino.use(stylelintPreset)
 	neutrino.use(vuePreset)
-	neutrino.use(jestPreset, {
-		coveragePathIgnorePatterns: [ '/.*\\.vue$'],
-		transform: {
-			'\\.vue$': require.resolve('./middlewares/jest-vue-processor.js')
-		}
-	})
+	neutrino.use(jestVuePreset)
 
 	// var len = config.toConfig().module.rules.length
 	// console.log(config.toConfig().module.rules[len-2].use[0])
